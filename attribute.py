@@ -16,7 +16,21 @@ class Attribute(object):
         if attribute_value_a is None or attribute_value_b is None:
             return False
         elif self.compare_type == 1:
-            return attribute_value_a == attribute_value_b
+                return attribute_value_a == attribute_value_b
+        elif self.compare_type == 2:
+            try:
+                a = float(attribute_value_a)
+                b = float(attribute_value_b)
+                return attribute_value_a <= attribute_value_b
+            except:
+                pass
+        elif self.compare_type == 3:
+            try:
+                a = float(attribute_value_a)
+                b = float(attribute_value_b)
+                return attribute_value_a >= attribute_value_b
+            except:
+                pass
         else:
             raise Exception("Unknown attribute type: %s" % self.compare_type)
 

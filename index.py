@@ -16,11 +16,17 @@ def train_and_evaluate_simple_model():
     model = simple_model.SimpleModel(products, attributes)
     model.train(train)
 
-    validate.validate_model(model, test)
+    return validate.validate_model(model, test)
     # print(find_match.find_match(model, 31140))
-    print(find_match.find_match(model, 33795))
+    # print(find_match.find_match(model, 33795))
     # print(find_match.find_match(model, 49031))
 
 
 if __name__ == '__main__':
-    train_and_evaluate_simple_model()
+    total = 0
+    for i in range(15):
+        score = train_and_evaluate_simple_model()
+        print(str(i) + " - Average: " + str(score))
+        total += score
+    print(total / 15)
+
