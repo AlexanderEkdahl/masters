@@ -1,1 +1,0 @@
-\copy (SELECT name, value, compare_type FROM features ORDER BY features.id) TO '../data/attributes.csv' DELIMITER ',' CSV
