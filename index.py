@@ -1,5 +1,6 @@
 """Main file for training and evaluating model performance"""
 
+import sys
 import product
 import match
 import split
@@ -18,19 +19,20 @@ def train_and_evaluate_simple_model():
 
     model = simple_model.SimpleModel(products, attributes)
     model.train(train)
+    print("Average score: %s" % validate.validate_model(model, test))
 
     test_matches = []
     for _ in range(10):
         test_matches.append(test.pop())
 
-    precision = 10
     for original, new in test_matches:
-        if new in [x[1] for x in find_match.find_match(model, original, precision)]:
-            print("%s found correct match %s within top %s matches" %
-                  (original, new, precision))
-        else:
-            print("Nope")
+        index = find_match.find_all_matches(model, original).index(new)
+        print("The match for %s was %s and was found at position %s" %
+              (original, new, index))
 
 
 if __name__ == '__main__':
+    if sys.version_info[0] < 3:
+        raise Exception("Requires Python 3+")
+
     train_and_evaluate_simple_model()
