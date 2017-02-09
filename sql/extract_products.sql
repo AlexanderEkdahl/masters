@@ -7,7 +7,6 @@ SELECT id,
                                       FROM feature_values
                                       WHERE feature_values.product_id = products.id) AS v 
                            ON features.id = v.feature_id
-                           WHERE features.compare_type = 1
                            ORDER BY features.id))
 FROM products
 ORDER BY products.id;

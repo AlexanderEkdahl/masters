@@ -1,1 +1,1 @@
-\copy (SELECT name, value, compare_type FROM features WHERE compare_type = 1 ORDER BY features.id) TO '../data/attributes.csv' DELIMITER ',' CSV
+\copy (SELECT name, value, compare_type FROM features ORDER BY features.id) TO '../data/attributes.csv' DELIMITER ',' CSV
