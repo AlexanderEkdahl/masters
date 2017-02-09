@@ -8,8 +8,8 @@ import find_match
 
 def train_and_evaluate_simple_model():
     """Runs the simple training model for data residing in the data folder"""
-    products = product.load_products("./data/products.csv")
     attributes = attribute.load_attributes("./data/attributes.csv")
+    products = product.load_products("./data/products.csv", attributes)
     matches = match.load_matches("./data/matches.csv")
     (train, test) = split.split_train_test(matches)
 
