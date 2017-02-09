@@ -8,4 +8,4 @@ def validate_model(model, matches):
             scores.append(score)
 
     average_score = float(sum(scores)) / max(len(scores), 1)
-    print("Average score: %s" % average_score)
+    return average_score
