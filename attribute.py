@@ -5,13 +5,18 @@ class AttributeException(Exception):
     pass
 
 
+def normalize_attribute_value(attribute_value):
+    """Transforms attribute_value into lowercase and removes superfluos whitespaces"""
+    return attribute_value.lower().lstrip()
+
+
 class Attribute(object):
     """Attribute holds information for a specific type of attributes"""
 
     def __init__(self, name, compare_type, values):
         self.name = name
         self.compare_type = compare_type
-        self.values = values
+        self.values = [normalize_attribute_value(x) for x in values.split(",")]
 
     def rewrite_attribute_value(self, attribute_value):
         """Rewrites the value from the list of available values"""
@@ -19,9 +24,9 @@ class Attribute(object):
             return None
 
         try:
-            return self.values.index(attribute_value)
+            return self.values.index(normalize_attribute_value(attribute_value))
         except ValueError:
-            print("%s not found in %s" % (attribute_value, self))
+            # print("%s not found in %s" % (normalize_attribute_value(attribute_value), self))
             return None
 
     def evaluate(self, attribute_value_a, attribute_value_b):
@@ -50,6 +55,6 @@ def load_attributes(input_file):
         reader = csv.reader(csvfile)
         for row in reader:
             attributes.append(
-                Attribute(row[0], int(row[2]), row[1].split(",")))
+                Attribute(row[0], int(row[2]), row[1]))
 
     return attributes
