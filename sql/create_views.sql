@@ -30,7 +30,7 @@ FROM pdegentyp where length(et03) - length(replace(et03, ',', '')) = 1;
 CREATE VIEW features AS
 SELECT idet AS id, et04 AS name, et00 AS description, et03 AS value, comparetype as compare_type
 FROM pdegentyp
-WHERE comparetype IN (1, 2, 3);
+WHERE comparetype IN (1, 2, 3) AND et01 = 'Lista';
 
 CREATE VIEW feature_values AS
 SELECT eg00 as feature_id, eg02 as product_id, eg01 as value
