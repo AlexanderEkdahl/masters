@@ -28,17 +28,6 @@ def train_and_evaluate_simple_model():
         else:
             print("Nope")
 
-    #return validate.validate_model(model, test)
-    #print(find_match.find_match(model, 31140))
-    #print(find_match.find_match(model, 33795, 3))
-    #print(find_match.find_match(model, 49031))
-
 
 if __name__ == '__main__':
-    # total = 0
-    # for i in range(15):
     score = train_and_evaluate_simple_model()
-    #     print(str(i) + " - Average: " + str(score))
-    #     total += score
-    # print(total / 15)
-
