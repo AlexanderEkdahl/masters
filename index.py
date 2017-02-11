@@ -11,15 +11,15 @@ import validate
 
 def train_and_evaluate_simple_model():
     """Runs the simple training model for data residing in the data folder"""
-    attributes = attribute.load_attributes("./data/cellphone_attributes.csv")
-    products = product.load_products("./data/cellphones.csv", attributes)
+    attributes = attribute.load_attributes("./data/subset_attributes.csv")
+    products = product.load_products("./data/subset.csv", attributes)
     matches = match.load_matches("./data/matches.csv", products)
     (train, test) = split.split_train_test(matches, 0.3)
 
     model = simple_model.SimpleModel(products, attributes)
     model.train(train)
     print("Average score: %s" % validate.average_score(model, test))
-    print("MSE: %s" % validate.mean_squared_error(model, test[:40]))
+    print("MSE: %s" % validate.mean_squared_error(model, test[:100]))
 
 
 if __name__ == '__main__':
