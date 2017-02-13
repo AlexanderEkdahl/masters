@@ -5,7 +5,8 @@ JOIN attribute_subcategories
 ON attributes.id = attribute_subcategories.attribute_id
 JOIN subcategories
 ON attribute_subcategories.subcategory_id = subcategories.id
-WHERE subcategories.name = 'Diskmaskin';
+WHERE subcategories.name = 'Diskmaskin'
+ORDER BY attributes.id;
 
 CREATE VIEW subset_with_attributes AS
 SELECT products.id,
@@ -28,3 +29,4 @@ ORDER BY products.id;
 
 DROP VIEW subset_with_attributes;
 DROP VIEW subset_attributes;
+
