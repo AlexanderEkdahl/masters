@@ -17,16 +17,18 @@ CSV.foreach("../data/subset_attributes.csv") do |row|
 end
 
 (attribute_names.count - 1).downto(0).each do |i|
-	found = false
+	found = 10
 
 	attributes.each.with_index do |_, j|
 		if attributes[j][i] != nil
-			found = true
-			break
+			found -= 1
+			if found <= 0
+				break
+			end
 		end
 	end
 
-	if !found
+	if found > 0
 		attribute_names.delete_at(i)
 		attributes.each do |attribute_values|
 			attribute_values.delete_at(i)
@@ -34,7 +36,9 @@ end
 	end
 end
 
-CSV.open("workshop.csv", "wb") do |csv|
+puts attribute_names.count
+
+CSV.open("../data/subset_no_empty_columns.csv", "wb") do |csv|
 	csv << ["id", "name", attribute_names].flatten
 	product_id.each.with_index do |id, i|
 		csv << [id, product_names[i], attributes[i]].flatten
